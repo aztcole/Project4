@@ -50,9 +50,6 @@ public class DraggableIcon extends JLabel implements DragGestureListener, DragSo
 			e.printStackTrace();
 		}
 		
-		
-		// testing icon text (TO BE DELETED)
-		this.setText("Test Icon Text");
 	}
 	
 	
