@@ -4,6 +4,8 @@
 
 package pack;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class DrawPanelOne extends JPanel {
@@ -13,6 +15,8 @@ public class DrawPanelOne extends JPanel {
 	// constructor
 	public DrawPanelOne()
 	{
-		
+		// sets the default properties of the panel
+		this.setBackground(Color.white);
+		setLayout(new FlowLayout(FlowLayout.CENTER,50,18));
 	}
 }

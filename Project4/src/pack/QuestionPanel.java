@@ -4,6 +4,7 @@
 
 package pack;
 
+import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class QuestionPanel extends JPanel {
@@ -15,6 +16,8 @@ public class QuestionPanel extends JPanel {
 	// constructor
 	public QuestionPanel()
 	{
+		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+		
 		dPanel = new DiagramPanel();
 		add(dPanel);
 	}

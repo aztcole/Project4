@@ -6,6 +6,8 @@
 package pack;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class DiagramPanel extends JPanel {
@@ -27,11 +29,20 @@ public class DiagramPanel extends JPanel {
 	private void initalizePanels()
 	{
 		// Diagram Panel is given default settings
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.GRAY);
+		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+		this.setPreferredSize(new Dimension(700, 800));
 		
 		// initializes draw panels
 		dPanelOne = new DrawPanelOne();
 		dPanelTwo = new DrawPanelTwo();
+		
+		dPanelOne.setPreferredSize(new Dimension(700,150));
+		dPanelTwo.setPreferredSize(new Dimension(700,650));
+		
+		dPanelOne.setBorder(BorderFactory.createLineBorder(Color.black));
+		dPanelTwo.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		
 		// adds in the panels
 		this.add(dPanelOne);

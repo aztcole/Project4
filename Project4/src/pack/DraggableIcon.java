@@ -1,7 +1,7 @@
-// Code: DraggableIcon.java
+// Class: DraggableIcon.java
 // Lead Contributor: Tyler Cole
 // Description: This class is the parent class for all draggable icons. It allows a user to drag a JLabel
-//				and drop it into draw panel two;
+//				and drop it into draw panel two.
 
 package pack;
 
@@ -50,7 +50,9 @@ public class DraggableIcon extends JLabel implements DragGestureListener, DragSo
 			e.printStackTrace();
 		}
 		
-		this.setText("yo yo yo");
+		
+		// testing icon text (TO BE DELETED)
+		this.setText("Test Icon Text");
 	}
 	
 	
