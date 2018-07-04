@@ -1,14 +1,21 @@
 // Class: QuestionPanel.java
-// Author: Tyler Cole
+// Lead Contributor: Tyler Cole
 // Description: Holds the diagram panel and the text panel
 
 package pack;
 
-public class QuestionPanel {
+import javax.swing.*;
+
+public class QuestionPanel extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
+	
+	public DiagramPanel dPanel;
 	
 	// constructor
 	public QuestionPanel()
 	{
-		
+		dPanel = new DiagramPanel();
+		add(dPanel);
 	}
 }

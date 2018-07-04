@@ -1,5 +1,5 @@
 // Class: Universe.java
-// Author: Tyler Cole
+// Lead Contributor: Tyler Cole
 // Description: Runs the program, creates the frame, adds panels to the frame.
 
 package pack;
@@ -9,8 +9,11 @@ import javax.swing.*;
 
 public class Universe extends JFrame {
 	
-	private JFrame frameWindow;
+	private static final long serialVersionUID = 1L;
 	
+	private JFrame frameWindow;
+	private JTabbedPane tabbyPane;
+	public QuestionPanel[] questArr; // Array to hold the 10 question panels
 	
 	// main method that runs the program
 	public static void main(String[] args)
@@ -23,7 +26,7 @@ public class Universe extends JFrame {
 		
 		catch(Exception e) 
 		{
-			throw e;
+			e.printStackTrace();
 		}
 	}
 	
@@ -39,11 +42,11 @@ public class Universe extends JFrame {
 		frameWindow.setTitle("Project 4");
 		
 		// Creates a tab system to hold the question panels
-		JTabbedPane tabbyPane = new JTabbedPane();
+		tabbyPane = new JTabbedPane();
 		frameWindow.add(tabbyPane);
 		
-		//Example tab
-		tabbyPane.addTab("Example Tab 1", null); // null is where the component should be
-		tabbyPane.addTab("Example Tab 2", null);
+		//Example tabs (TO BE DELETED)
+		tabbyPane.addTab("Example Tab 1", new QuestionPanel());
+		tabbyPane.addTab("Example Tab 2", new JButton("Test Button"));
 	}
 }
