@@ -47,6 +47,6 @@ public class Universe extends JFrame {
 		
 		//Example tabs (TO BE DELETED)
 		tabbyPane.addTab("Example Tab 1", new QuestionPanel());
-		tabbyPane.addTab("Example Tab 2", new JButton("Test Button"));
+		tabbyPane.addTab("Example Tab 2", new QuestionPanel());
 	}
 }
