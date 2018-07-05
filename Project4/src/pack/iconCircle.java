@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -47,14 +48,11 @@ public class IconCircle extends JPanel {
 	    this.setSize(new Dimension(100,100));
 	    this.setOpaque(false);
 	    this.setVisible(true);
-	    try 
-	    {
-	    	image = ImageIO.read(new File("resources//circle.png"));
-	    } 
-	    catch (IOException ex) 
-	    {
-	    	// handle exception...
-	    }
+	    try {                
+      image = ImageIO.read(new File("resources//circle.png"));
+   } catch (IOException ex) {
+        // handle exception...
+   }
    MouseAdapter onDrag = new MouseAdapter(){
         public void mouseDragged(MouseEvent e){
         	repaintedCheck = false;
