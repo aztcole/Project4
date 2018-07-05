@@ -21,7 +21,7 @@ public class IconSquare extends JPanel {
 	
     private BufferedImage image;
     private String name = "Square-";
-    private int x = 600;
+    private int x = 500;
     private int y = 50;
     static int iconCount = 1;
     

@@ -21,7 +21,7 @@ public class IconCircle extends JPanel {
 	
     private BufferedImage image;
     private String name = "Circle-";
-    private int x = 300;
+    private int x = 200;
     private int y = 50;
     static int iconCount = 1;
 
