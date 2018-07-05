@@ -7,7 +7,6 @@ package pack;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class DiagramPanel extends JPanel {
@@ -16,7 +15,6 @@ public class DiagramPanel extends JPanel {
 	
 	public DrawPanelOne dPanelOne;
 	public DrawPanelTwo dPanelTwo;
-	
 	
 	// constructor
 	public DiagramPanel()
@@ -40,18 +38,6 @@ public class DiagramPanel extends JPanel {
 		// initializes draw panels
 		dPanelOne = new DrawPanelOne();
 		dPanelTwo = new DrawPanelTwo();
-		
-		dPanelOne.setSize(new Dimension(800,200));
-		dPanelTwo.setSize(new Dimension(800,800));
-		
-		dPanelOne.setBorder(BorderFactory.createLineBorder(Color.black));
-		dPanelTwo.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		dPanelOne.setLocation(100, 0);
-		dPanelTwo.setLocation(100, 200);
-		
-		dPanelOne.setOpaque(false);
-		dPanelTwo.setOpaque(false);
 		
 		// adds in the panels
 		this.add(dPanelOne);

@@ -4,7 +4,6 @@
 
 package pack;
 
-import java.awt.FlowLayout;
 import javax.swing.*;
 
 public class QuestionPanel extends JPanel {

@@ -5,7 +5,7 @@
 package pack;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import javax.swing.*;
 
 public class DrawPanelOne extends JPanel {
@@ -17,5 +17,9 @@ public class DrawPanelOne extends JPanel {
 	{
 		// sets the default properties of the panel
 		this.setBackground(Color.white);
+		this.setSize(new Dimension(800,200));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.setLocation(100, 0);
+		this.setOpaque(false);
 	}
 }
