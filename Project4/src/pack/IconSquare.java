@@ -1,6 +1,9 @@
+// Class: IconSquare.java
+// Lead Contributor: Andrew Durkiewicz
+// Description: Creates a draggable rectangle that represents a class.
+
 package pack;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -9,17 +12,19 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class IconSquare extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
+	
     private BufferedImage image;
     private String name = "Square-";
     private int x = 600;
     private int y = 50;
     static int iconCount = 1;
+    
     public int getX() {
     	return this.x;
     }
@@ -38,45 +43,51 @@ public class IconSquare extends JPanel {
     	this.repaint();
 
     }
-    static boolean repaintedCheck; //this checks if already repainted 
+    
+    static boolean repaintedCheck; // checks if already repainted 
    
 	public IconSquare() {
+		
+		// calls constructor of JPanel
 	    super();
+	    
+	    // sets name
 	    this.name = name + iconCount;
 	    iconCount++;
+	    
+	    // default settings
 	    this.setLocation(this.getX(),this.getY());
 	    this.setSize(new Dimension(100,100));
 	    this.setOpaque(false);
 	    this.setVisible(true);
-	    try {                
-      image = ImageIO.read(new File("resources//rectangle.png"));
-   } catch (IOException ex) {
+	    
+	    try {
+	    	image = ImageIO.read(new File("resources//rectangle.png"));
+	    } 
+	    catch (IOException ex) {
         // handle exception...
-   }
-   MouseAdapter onDrag = new MouseAdapter(){
-        public void mouseDragged(MouseEvent e){
-        	repaintedCheck = false;
-        	JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
-        	IconSquare rectangle = (IconSquare) e.getSource();
-        	Point p = contentPane.getMousePosition();
-        	contentPane.repaint();
-        	rectangle.setLocation(rectangle.getX(),rectangle.getY());
-        	rectangle.setLocation(p.x - 50,p.y -50);
-        	rectangle.setX(p.x - 50);
-        	rectangle.setY(p.y - 50);
-
-
-
-        	contentPane.repaint();
-        	
-        }};
+	    }
+	    
+	    MouseAdapter onDrag = new MouseAdapter(){
+	    	public void mouseDragged(MouseEvent e){
+	    		repaintedCheck = false;
+	    		JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
+	    		IconSquare rectangle = (IconSquare) e.getSource();
+	    		Point p = contentPane.getMousePosition();
+	    		contentPane.repaint();
+	    		rectangle.setLocation(rectangle.getX(),rectangle.getY());
+	    		rectangle.setLocation(p.x - 50,p.y -50);
+	    		rectangle.setX(p.x - 50);
+	    		rectangle.setY(p.y - 50);
+	    		contentPane.repaint();
+	    	}
+	    };
+	    
 		MouseAdapter afterListenerRemove = new MouseAdapter() {
-			   		
-			   		public void mouseClicked(MouseEvent e) {
-			        	IconSquare thissquare = (IconSquare) e.getSource();
-			        	System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
+			public void mouseClicked(MouseEvent e) {
+				IconSquare thissquare = (IconSquare) e.getSource();
+				System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
 			}
-		
 		};
         
         MouseAdapter removeListeners = new MouseAdapter() {
@@ -85,6 +96,7 @@ public class IconSquare extends JPanel {
 	        	JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	        	contentPane.add(new IconSquare());
 	   		}
+	   		
 	   		public void mouseReleased(MouseEvent e) {
 	   			IconSquare thisSquare = (IconSquare) e.getSource();
 	   			thisSquare.removeMouseMotionListener(onDrag);
@@ -96,15 +108,15 @@ public class IconSquare extends JPanel {
 	   		}
 	   	};
 	   	
-		
+		// add the mouse and motion listeners to the panel
 	   	this.addMouseMotionListener(onDrag);
 	   	this.addMouseListener(removeListeners);
+	}
 
-	    }
-
-	    @Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
-	    }
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+	}
+	
 }
