@@ -4,6 +4,7 @@
 
 package pack;
 
+import java.awt.Color;
 import javax.swing.*;
 
 public class QuestionPanel extends JPanel {
@@ -15,7 +16,11 @@ public class QuestionPanel extends JPanel {
 	// constructor
 	public QuestionPanel()
 	{
+		// sets default settings
 		this.setLayout(null);
+		this.setBackground(Color.WHITE);
+		
+		// adds a diagram panel
 		dPanel = new DiagramPanel();
 		add(dPanel);
 	}

@@ -19,7 +19,7 @@ public class DrawPanelOne extends JPanel {
 		this.setBackground(Color.white);
 		this.setSize(new Dimension(800,200));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
-		this.setLocation(100, 0);
+		this.setLocation(10, 0);
 		this.setOpaque(false);
 	}
 }

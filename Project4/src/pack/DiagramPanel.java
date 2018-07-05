@@ -7,6 +7,8 @@ package pack;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.*;
 
 public class DiagramPanel extends JPanel {
@@ -27,7 +29,7 @@ public class DiagramPanel extends JPanel {
 	private void initalizePanels()
 	{
 		// Diagram Panel is given default settings
-		this.setBackground(Color.GRAY);
+		this.setBackground(Color.WHITE);
 		this.setLayout(null);
 		this.setSize(new Dimension(1000, 1000));
 		
@@ -47,5 +49,14 @@ public class DiagramPanel extends JPanel {
 		this.add(dragCircle);
 		this.add(dragSquare);
 		
+		
+	}
+	
+	// testing paint component
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.drawLine(0, 0, 1000, 1000);
 	}
 }
