@@ -16,8 +16,7 @@ public class QuestionPanel extends JPanel {
 	// constructor
 	public QuestionPanel()
 	{
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
-		
+		this.setLayout(null);
 		dPanel = new DiagramPanel();
 		add(dPanel);
 	}

@@ -30,22 +30,36 @@ public class DiagramPanel extends JPanel {
 	{
 		// Diagram Panel is given default settings
 		this.setBackground(Color.GRAY);
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
-		this.setPreferredSize(new Dimension(700, 800));
+		this.setLayout(null);
+		this.setSize(new Dimension(1000, 1000));
+		
+		// initializes the draggable icons
+		IconCircle dragCircle = new IconCircle();
+		IconSquare dragSquare = new IconSquare();
 		
 		// initializes draw panels
 		dPanelOne = new DrawPanelOne();
 		dPanelTwo = new DrawPanelTwo();
 		
-		dPanelOne.setPreferredSize(new Dimension(700,150));
-		dPanelTwo.setPreferredSize(new Dimension(700,650));
+		dPanelOne.setSize(new Dimension(800,200));
+		dPanelTwo.setSize(new Dimension(800,800));
 		
 		dPanelOne.setBorder(BorderFactory.createLineBorder(Color.black));
 		dPanelTwo.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		dPanelOne.setLocation(100, 0);
+		dPanelTwo.setLocation(100, 200);
+		
+		dPanelOne.setOpaque(false);
+		dPanelTwo.setOpaque(false);
 		
 		// adds in the panels
 		this.add(dPanelOne);
 		this.add(dPanelTwo);
+		
+		// adds the draggable icons to the panel
+		this.add(dragCircle);
+		this.add(dragSquare);
+		
 	}
 }
