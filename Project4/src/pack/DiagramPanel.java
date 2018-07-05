@@ -27,7 +27,7 @@ public class DiagramPanel extends JPanel {
 	private void initalizePanels()
 	{
 		// Diagram Panel is given default settings
-		this.setBackground(Color.GRAY);
+		this.setBackground(Color.WHITE);
 		this.setLayout(null);
 		this.setSize(new Dimension(1000, 1000));
 		
