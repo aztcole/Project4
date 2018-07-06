@@ -21,6 +21,8 @@ public class IconSquare extends JPanel {
 	
     private BufferedImage image;
     private String name = "Square-";
+    final int spawnx = 500;
+    final int spawny = 50;
     private int x = 500;
     private int y = 50;
     static int iconCount = 1;
@@ -52,12 +54,9 @@ public class IconSquare extends JPanel {
 	    super();
 	    
 	    // sets name
-	    this.name = name + iconCount;
-	    iconCount++;
-	    
 	    // default settings
-	    this.setLocation(this.getX(),this.getY());
 	    this.setSize(new Dimension(100,100));
+	    this.setLocation(this.getX(),this.getY());
 	    this.setOpaque(false);
 	    this.setVisible(true);
 	    
@@ -76,15 +75,16 @@ public class IconSquare extends JPanel {
 	    		Point p = contentPane.getMousePosition();
 	    		contentPane.repaint();
 	    		rectangle.setLocation(rectangle.getX(),rectangle.getY());
-	    		rectangle.setLocation(p.x - 50,p.y -50);
-	    		rectangle.setX(p.x - 50);
-	    		rectangle.setY(p.y - 50);
+	    		rectangle.setX(p.x  - 50);
+	    		rectangle.setY(p.y - 50 );
+	    		rectangle.setLocation(p.x -50 ,p.y - 25);
+
 	    		contentPane.repaint();
 	    	}
 	    };
 	    
 		MouseAdapter afterListenerRemove = new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				IconSquare thissquare = (IconSquare) e.getSource();
 				System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
 			}
@@ -92,19 +92,36 @@ public class IconSquare extends JPanel {
         
         MouseAdapter removeListeners = new MouseAdapter() {
 	   		
-	   		public void mousePressed(MouseEvent e) {
+	   		/*public void mousePressed(MouseEvent e) {
 	        	JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	        	contentPane.add(new IconSquare());
-	   		}
+	   		}*/
 	   		
 	   		public void mouseReleased(MouseEvent e) {
 	   			IconSquare thisSquare = (IconSquare) e.getSource();
-	   			thisSquare.removeMouseMotionListener(onDrag);
-	   			//on drop, this listener will be deleted to implement the other listener 
-	   			//which prevents more dragging 
-	   			thisSquare.removeMouseListener(this);
-	        	thisSquare.addMouseListener(afterListenerRemove);
-	        	
+	   			JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
+	   			if(contentPane.getComponent(1).getBounds().contains(thisSquare.getBounds())) {
+	   			    thisSquare.name = name + iconCount;
+
+	   				iconCount++;
+
+	   				contentPane.add(new IconSquare());
+		   			thisSquare.removeMouseMotionListener(onDrag);
+		   			//on drop, this listener will be deleted to implement the other listener 
+		   			//which prevents more dragging 
+		   			thisSquare.removeMouseListener(this);
+		        	thisSquare.addMouseListener(afterListenerRemove);
+
+	   			}
+	   			else {
+	   				thisSquare.setLocation(spawnx, spawny);
+	   				thisSquare.setX(spawnx);
+	   				thisSquare.setY(spawny);
+		        	contentPane.repaint();
+
+	   			}
+	        	contentPane.repaint();
+
 	   		}
 	   	};
 	   	
