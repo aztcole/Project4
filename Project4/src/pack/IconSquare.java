@@ -20,7 +20,7 @@ public class IconSquare extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
     private BufferedImage image;
-    private String name = "Square-";
+    private String name = "Icon";
     final int spawnx = 500;
     final int spawny = 50;
     private int x = 500;
