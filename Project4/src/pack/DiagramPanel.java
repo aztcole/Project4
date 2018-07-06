@@ -7,7 +7,8 @@ package pack;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.*;
 
 public class DiagramPanel extends JPanel {
@@ -16,7 +17,6 @@ public class DiagramPanel extends JPanel {
 	
 	public DrawPanelOne dPanelOne;
 	public DrawPanelTwo dPanelTwo;
-	
 	
 	// constructor
 	public DiagramPanel()
@@ -29,23 +29,34 @@ public class DiagramPanel extends JPanel {
 	private void initalizePanels()
 	{
 		// Diagram Panel is given default settings
-		this.setBackground(Color.GRAY);
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
-		this.setPreferredSize(new Dimension(700, 800));
+		this.setBackground(Color.WHITE);
+		this.setLayout(null);
+		this.setSize(new Dimension(1000, 1000));
+		
+		// initializes the draggable icons
+		IconCircle dragCircle = new IconCircle();
+		IconSquare dragSquare = new IconSquare();
 		
 		// initializes draw panels
 		dPanelOne = new DrawPanelOne();
 		dPanelTwo = new DrawPanelTwo();
 		
-		dPanelOne.setPreferredSize(new Dimension(700,150));
-		dPanelTwo.setPreferredSize(new Dimension(700,650));
-		
-		dPanelOne.setBorder(BorderFactory.createLineBorder(Color.black));
-		dPanelTwo.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		
 		// adds in the panels
 		this.add(dPanelOne);
 		this.add(dPanelTwo);
+		
+		// adds the draggable icons to the panel
+		this.add(dragCircle);
+		this.add(dragSquare);
+		
+		
+	}
+	
+	// testing paint component
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.drawLine(0, 0, 1000, 1000);
 	}
 }

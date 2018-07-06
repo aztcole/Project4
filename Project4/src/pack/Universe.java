@@ -37,9 +37,11 @@ public class Universe extends JFrame {
 		// initializes frameWindow and sets some default requirements
 		frameWindow = new JFrame();
 		frameWindow.setVisible(true);
-		frameWindow.setSize(new Dimension(1200, 700));
+		frameWindow.setSize(new Dimension(1200, 1200));
 		frameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameWindow.setTitle("Project 4");
+		
+		//frameWindow.add(new DiagramPanel());
 		
 		// Creates a tab system to hold the question panels
 		tabbyPane = new JTabbedPane();

@@ -5,7 +5,7 @@
 package pack;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import javax.swing.*;
 
 public class DrawPanelOne extends JPanel {
@@ -17,14 +17,9 @@ public class DrawPanelOne extends JPanel {
 	{
 		// sets the default properties of the panel
 		this.setBackground(Color.white);
-		setLayout(new FlowLayout(FlowLayout.CENTER,50,18));
-		
-		// initializes the draggable icons
-		iconCircle dragCircle = new iconCircle();
-		iconRectangle dragRect = new iconRectangle();
-		
-		// adds the draggable icons to the panel
-		this.add(dragCircle);
-		this.add(dragRect);
+		this.setSize(new Dimension(800,200));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.setLocation(10, 0);
+		this.setOpaque(false);
 	}
 }

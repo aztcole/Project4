@@ -4,7 +4,7 @@
 
 package pack;
 
-import java.awt.FlowLayout;
+import java.awt.Color;
 import javax.swing.*;
 
 public class QuestionPanel extends JPanel {
@@ -16,8 +16,11 @@ public class QuestionPanel extends JPanel {
 	// constructor
 	public QuestionPanel()
 	{
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+		// sets default settings
+		this.setLayout(null);
+		this.setBackground(Color.WHITE);
 		
+		// adds a diagram panel
 		dPanel = new DiagramPanel();
 		add(dPanel);
 	}
