@@ -20,10 +20,11 @@ public class IconSquare extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
     private BufferedImage image;
-    private String name = "Square-";
+    private String name = "Icon";
+    final int spawnx = 500;
+    final int spawny = 50;
     private int x = 500;
     private int y = 50;
-    static int iconCount = 1;
     
     public int getX() {
     	return this.x;
@@ -52,12 +53,9 @@ public class IconSquare extends JPanel {
 	    super();
 	    
 	    // sets name
-	    this.name = name + iconCount;
-	    iconCount++;
-	    
 	    // default settings
-	    this.setLocation(this.getX(),this.getY());
 	    this.setSize(new Dimension(100,100));
+	    this.setLocation(this.getX(),this.getY());
 	    this.setOpaque(false);
 	    this.setVisible(true);
 	    
@@ -68,43 +66,59 @@ public class IconSquare extends JPanel {
         // handle exception...
 	    }
 	    
+	    
 	    MouseAdapter onDrag = new MouseAdapter(){
 	    	public void mouseDragged(MouseEvent e){
 	    		repaintedCheck = false;
 	    		JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
-	    		IconSquare rectangle = (IconSquare) e.getSource();
+	    		IconSquare thisSquare = (IconSquare) e.getSource();
 	    		Point p = contentPane.getMousePosition();
 	    		contentPane.repaint();
-	    		rectangle.setLocation(rectangle.getX(),rectangle.getY());
-	    		rectangle.setLocation(p.x - 50,p.y -50);
-	    		rectangle.setX(p.x - 50);
-	    		rectangle.setY(p.y - 50);
+	    		thisSquare.setLocation(thisSquare.getX(),thisSquare.getY());
+	    		thisSquare.setX(p.x -50);
+	    		thisSquare.setY(p.y-50 );
+	    		thisSquare.setLocation(p.x-50 ,p.y-25);
+
 	    		contentPane.repaint();
 	    	}
 	    };
 	    
 		MouseAdapter afterListenerRemove = new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				IconSquare thissquare = (IconSquare) e.getSource();
+			public void mousePressed(MouseEvent e) {
+				IconSquare thissquare = (IconSquare) e.getSource(); //will use for arrows. This gives us coordinates of each icon.
 				System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
 			}
 		};
         
         MouseAdapter removeListeners = new MouseAdapter() {
 	   		
-	   		public void mousePressed(MouseEvent e) {
+	   		/*public void mousePressed(MouseEvent e) {
 	        	JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	        	contentPane.add(new IconSquare());
-	   		}
+	   		}*/
 	   		
 	   		public void mouseReleased(MouseEvent e) {
 	   			IconSquare thisSquare = (IconSquare) e.getSource();
-	   			thisSquare.removeMouseMotionListener(onDrag);
-	   			//on drop, this listener will be deleted to implement the other listener 
-	   			//which prevents more dragging 
-	   			thisSquare.removeMouseListener(this);
-	        	thisSquare.addMouseListener(afterListenerRemove);
-	        	
+	   			JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
+	   			if(contentPane.getComponent(1).getBounds().contains(thisSquare.getBounds())) {
+	   			    thisSquare.name = name + (contentPane.getComponentCount() - 3);
+	   				contentPane.add(new IconSquare());
+		   			thisSquare.removeMouseMotionListener(onDrag);
+		   			//on drop, this listener will be deleted to implement the other listener 
+		   			//which prevents more dragging 
+		   			thisSquare.removeMouseListener(this); //remove this listener since we are done with it
+		        	thisSquare.addMouseListener(afterListenerRemove);
+
+	   			}
+	   			else { //teleport back to start
+	   				thisSquare.setLocation(spawnx, spawny);
+	   				thisSquare.setX(spawnx);
+	   				thisSquare.setY(spawny);
+		        	contentPane.repaint();
+
+	   			}
+	        	contentPane.repaint();
+
 	   		}
 	   	};
 	   	
