@@ -97,7 +97,7 @@ public class IconSquare extends JPanel {
 				if(connectArr.size() == 0 || connectArr.get(connectArr.size()-1).iconC2 != null || connectArr.get(connectArr.size()-1).iconS2 != null)
 				{
 					System.out.println("New connection added\n");
-					Connection tempConnec = new Connection(parentPane.aggregate, parentPane.associate, parentPane.inherit, parentPane.bold, parentPane.color);
+					Connection tempConnec = new Connection(parentPane.cPanel.aggregate, parentPane.cPanel.inherit, parentPane.cPanel.associate, parentPane.cPanel.bold, parentPane.cPanel.dashed, parentPane.cPanel.color);
 					tempConnec.AddSquare(thissquare);
 					connectArr.add(tempConnec);
 				}

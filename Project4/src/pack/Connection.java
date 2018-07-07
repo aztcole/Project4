@@ -5,9 +5,14 @@
 
 package pack;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Stroke;
+import java.awt.geom.AffineTransform;
 import java.util.Observable;
 
 public class Connection extends Observable {
@@ -17,29 +22,107 @@ public class Connection extends Observable {
 	
 	private Point point1, point2;
 	
-	private boolean aggregate, inherit, associate, bold;
+	private boolean aggregate, inherit, associate, bold, dashed;
 	private Color color;
 	
 	// constructor
-	public Connection(boolean ag, boolean inh, boolean assoc, boolean isBold, Color c)
+	public Connection(boolean ag, boolean inh, boolean assoc, boolean isBold, boolean isDashed, Color c)
 	{
 		// read arguments into variables
 		aggregate = ag;
 		inherit = inh;
 		associate = assoc;
-		color = c;
 		bold = isBold;
+		dashed = isDashed;
+		color = c;
 	}
 	
 	// this method draws the lines between the icons
-	public void draw(Graphics2D g2d)
+	public void draw(Graphics g)
 	{
+		// convert to 2D graphics
+		Graphics2D g2d = (Graphics2D) g.create();
+		
+		// set color
 		g2d.setColor(color);
 		
+		// create the polygon Arrow Head to be used for creating arrows
+        Polygon arrowHead = new Polygon();  
+        arrowHead.addPoint( 0,5);
+        arrowHead.addPoint( -5, -5);
+        arrowHead.addPoint( 5,-5);
+        
+        // create diamond head polygon to be used for aggregation
+        Polygon diamondHead = new Polygon();
+        diamondHead.addPoint( 0,5);
+        diamondHead.addPoint( -5, -5);
+        diamondHead.addPoint( 0,-10);
+        diamondHead.addPoint( 5,-5);
+        
+        // transformation
+        AffineTransform tx = new AffineTransform();
+		
+		// draws the line
 		if(point1 != null && point2 != null)
 		{
+			// bold / dashed settings
+			if(bold && dashed)
+			{
+				Stroke boldDashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+				g2d.setStroke(boldDashed);
+			}
+			
+			else if(bold)
+			{
+				g2d.setStroke(new BasicStroke(3));
+			}
+			
+			else if(dashed)
+			{
+				Stroke dashed = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+				g2d.setStroke(dashed);
+			}
+			
+			else
+			{
+				g2d.setStroke(new BasicStroke(1));
+			}
+			
 			g2d.drawLine(point1.x, point1.y, point2.x, point2.y);
+			
+			// Connection settings
+			if(aggregate)
+			{
+				tx.setToIdentity();
+	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
+	            tx.translate(point2.x, point2.y);
+	            tx.rotate((angle-Math.PI/2d));
+	            g2d.setTransform(tx); 
+	            g2d.drawPolygon(diamondHead);
+			}
+			
+			else if(inherit)
+			{
+				tx.setToIdentity();
+	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
+	            tx.translate(point2.x, point2.y);
+	            tx.rotate((angle-Math.PI/2d));
+	            g2d.setTransform(tx);   
+	            g2d.drawPolygon(arrowHead);
+			}
+			
+			else if(associate)
+			{
+				tx.setToIdentity();
+	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
+	            tx.translate(point2.x, point2.y);
+	            tx.rotate((angle-Math.PI/2d));
+	            g2d.setTransform(tx);
+	            g2d.drawLine(0, 5, 5, -5);
+	            g2d.drawLine(0, 5, -5, -5);
+			}
 		}
+		
 	}
 	
 	// adds a circle into the connection

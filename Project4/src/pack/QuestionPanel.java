@@ -27,6 +27,7 @@ public class QuestionPanel extends JPanel {
 		
 		// initalizes diagram panel
 		dPanel = new DiagramPanel();
+		dPanel.cPanel = cPanel;
 		add(dPanel);
 	}
 }

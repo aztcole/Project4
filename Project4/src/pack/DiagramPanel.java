@@ -8,7 +8,6 @@ package pack;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -16,15 +15,11 @@ public class DiagramPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public ControlPanel cPanel;
 	public DrawPanelOne dPanelOne;
 	public DrawPanelTwo dPanelTwo;
 	
 	public ArrayList<Connection> connecArr = new ArrayList<Connection>();
-	
-	public boolean aggregate, inherit, associate, bold;
-	public Color color;
-	
-	private Graphics2D g2d;
 	
 	// constructor
 	public DiagramPanel()
@@ -71,13 +66,10 @@ public class DiagramPanel extends JPanel {
 		// access paint component
 		super.paintComponent(g);
 		
-		// convert to 2D graphics
-		g2d = (Graphics2D) g.create();
-		
 		// draws connections
 		for(int i = 0; i<connecArr.size(); i++)
 		{
-			connecArr.get(i).draw(g2d);
+			connecArr.get(i).draw(g);
 		}
 		
 	}
