@@ -56,7 +56,7 @@ public class Connection extends Observable {
         Polygon diamondHead = new Polygon();
         diamondHead.addPoint( 0,5);
         diamondHead.addPoint( -5, -5);
-        diamondHead.addPoint( 0,-10);
+        diamondHead.addPoint( 0,-15);
         diamondHead.addPoint( 5,-5);
         
         // transformation
