@@ -11,6 +11,7 @@ public class QuestionPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public ControlPanel cPanel;
 	public DiagramPanel dPanel;
 	
 	// constructor
@@ -20,8 +21,13 @@ public class QuestionPanel extends JPanel {
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 		
-		// adds a diagram panel
+		// initalizes Control panel
+		cPanel = new ControlPanel();
+		add(cPanel);
+		
+		// initalizes diagram panel
 		dPanel = new DiagramPanel();
+		dPanel.cPanel = cPanel;
 		add(dPanel);
 	}
 }

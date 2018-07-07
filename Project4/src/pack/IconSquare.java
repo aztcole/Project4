@@ -12,12 +12,17 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class IconSquare extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public ArrayList<Connection> connectArr;
+	public DiagramPanel parentPane;
 	
     private BufferedImage image;
     private String name = "Icon";
@@ -87,6 +92,25 @@ public class IconSquare extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				IconSquare thissquare = (IconSquare) e.getSource(); //will use for arrows. This gives us coordinates of each icon.
 				System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
+				
+				// if empty connection array list or last item of array list has both items add a new one to the list
+				if(connectArr.size() == 0 || connectArr.get(connectArr.size()-1).iconC2 != null || connectArr.get(connectArr.size()-1).iconS2 != null)
+				{
+					System.out.println("New connection added\n");
+					Connection tempConnec = new Connection(parentPane.cPanel.aggregate, parentPane.cPanel.inherit, parentPane.cPanel.associate, parentPane.cPanel.bold, parentPane.cPanel.dashed, parentPane.cPanel.color);
+					tempConnec.AddSquare(thissquare);
+					connectArr.add(tempConnec);
+				}
+				
+				// otherwise add a square to the last item of the connection list
+				else
+				{
+					System.out.println("Square added to last connection\n");
+					connectArr.get(connectArr.size() - 1).AddSquare(thissquare);
+				}
+				
+				// repaint parent
+				parentPane.repaint();
 			}
 		};
         
@@ -101,8 +125,15 @@ public class IconSquare extends JPanel {
 	   			IconSquare thisSquare = (IconSquare) e.getSource();
 	   			JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	   			if(contentPane.getComponent(1).getBounds().contains(thisSquare.getBounds())) {
+	   				
 	   			    thisSquare.name = name + (contentPane.getComponentCount() - 3);
-	   				contentPane.add(new IconSquare());
+	   			    
+	   			    IconSquare tempSquare = new IconSquare();
+	   			    tempSquare.connectArr = connectArr;
+	   			    tempSquare.parentPane = parentPane;
+	   			    
+	   				contentPane.add(tempSquare);
+	   				
 		   			thisSquare.removeMouseMotionListener(onDrag);
 		   			//on drop, this listener will be deleted to implement the other listener 
 		   			//which prevents more dragging 
