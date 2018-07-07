@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class DiagramPanel extends JPanel {
@@ -17,6 +18,13 @@ public class DiagramPanel extends JPanel {
 	
 	public DrawPanelOne dPanelOne;
 	public DrawPanelTwo dPanelTwo;
+	
+	public ArrayList<Connection> connecArr = new ArrayList<Connection>();
+	
+	public boolean aggregate, inherit, associate, bold;
+	public Color color;
+	
+	private Graphics2D g2d;
 	
 	// constructor
 	public DiagramPanel()
@@ -31,11 +39,17 @@ public class DiagramPanel extends JPanel {
 		// Diagram Panel is given default settings
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
-		this.setSize(new Dimension(1000, 1000));
+		this.setSize(new Dimension(810, 1000));
 		
-		// initializes the draggable icons
+		// initializes the draggable circle
 		IconCircle dragCircle = new IconCircle();
+		dragCircle.connectArr = connecArr;
+		dragCircle.parentPane = this;
+		
+		// initializes the draggable square
 		IconSquare dragSquare = new IconSquare();
+		dragSquare.connectArr = connecArr;
+		dragSquare.parentPane = this;
 		
 		// initializes draw panels
 		dPanelOne = new DrawPanelOne();
@@ -49,14 +63,22 @@ public class DiagramPanel extends JPanel {
 		this.add(dragCircle);
 		this.add(dragSquare);
 		
-		
 	}
 	
 	// testing paint component
 	protected void paintComponent(Graphics g)
 	{
+		// access paint component
 		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g.create();
-		g2d.drawLine(0, 0, 1000, 1000);
+		
+		// convert to 2D graphics
+		g2d = (Graphics2D) g.create();
+		
+		// draws connections
+		for(int i = 0; i<connecArr.size(); i++)
+		{
+			connecArr.get(i).draw(g2d);
+		}
+		
 	}
 }
