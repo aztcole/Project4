@@ -16,7 +16,7 @@ public class DrawPanelTwo extends JPanel{
 	{
 		// initializes the panel to default settings
 		this.setBackground(Color.WHITE);
-		this.setSize(new Dimension(800,800));
+		this.setSize(new Dimension(800,750));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.setLocation(10, 200);
 		this.setOpaque(false);
