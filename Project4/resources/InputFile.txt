@@ -1,0 +1,78 @@
+//Question 1
+qBegin
+Diagram
+c Class1 c Class2
+Class1 i Class2
+qEnd
+//Question 2
+qBegin
+Diagram
+c Class1 c Class2 c Class3
+Class1 g Class2
+Class2 i Class3
+qEnd
+//Question 3
+qBegin
+Diagram
+c Class1 c Class2 c Class3 c Class4
+Class1 g Class2
+Class2 i Class3
+Class2 i Class4
+qEnd
+//Question 4
+qBegin
+Diagram
+c Class1 c Class2 c Class3 c Class4
+Class1 g Class2
+Class2 s Class3
+Class2 i Class4
+Class3 i Class4
+qEnd
+//Question 5
+qBegin
+Diagram
+c Class1 c Class2 c Class3 c Class4 c Class5
+Class1 i Class2
+Class1 i Class4
+Class1 g Class3
+Class3 i Class5
+qEnd
+//Question 6
+qBegin
+Code
+c Class1 c Class2
+Class1 i Class2
+qEnd
+//Question 7
+qBegin
+Code
+c Class1 c Class2 c Class3
+Class1 g Class2
+Class2 i Class3
+qEnd
+// Question 8
+qBegin
+Code
+c Class1 c Class2 c Class3 c Class4
+Class1 g Class2
+Class2 i Class3
+Class2 i Class4
+qEnd
+//Question 9
+qBegin
+Code
+c Class1 c Class2 c Class3 c Class4
+Class1 g Class2
+Class2 s Class3
+Class2 i Class4
+Class3 i Class4
+qEnd
+//Question 10
+qBegin
+Code
+c Class1 c Class2 c Class3 c Class4 c Class5
+Class1 i Class2
+Class1 i Class4
+Class1 g Class3
+Class3 i Class5
+qEnd

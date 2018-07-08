@@ -14,7 +14,7 @@ import javax.swing.*;
 public class DiagramPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	
+	public IconCircle dragCircle;
 	public ControlPanel cPanel;
 	public DrawPanelOne dPanelOne;
 	public DrawPanelTwo dPanelTwo;
@@ -37,7 +37,7 @@ public class DiagramPanel extends JPanel {
 		this.setSize(new Dimension(810, 1000));
 		
 		// initializes the draggable circle
-		IconCircle dragCircle = new IconCircle();
+		dragCircle = new IconCircle();
 		dragCircle.connectArr = connecArr;
 		dragCircle.parentPane = this;
 		
