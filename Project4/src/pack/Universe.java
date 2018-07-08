@@ -21,6 +21,7 @@ public class Universe extends JFrame {
 		// try statement to catch possible errors
 		try 
 		{
+			QuestionPool.getInstance();
 			new Universe();
 		}
 		

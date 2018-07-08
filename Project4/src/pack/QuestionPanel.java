@@ -13,7 +13,7 @@ public class QuestionPanel extends JPanel {
 	
 	public ControlPanel cPanel;
 	public DiagramPanel dPanel;
-	public textArea textPanel;
+	public CodePanel codePanel;
 	
 	// constructor
 	public QuestionPanel()
@@ -31,7 +31,7 @@ public class QuestionPanel extends JPanel {
 		dPanel.cPanel = cPanel;
 		add(dPanel);
 		
-		textPanel = new textArea();
-		add(textPanel);
+		codePanel = new CodePanel();
+		add(codePanel);
 	}
 }
