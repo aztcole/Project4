@@ -1,9 +1,14 @@
+// Class: QuestionPool.java
+// Lead Contributor: Andrew Durkiewicz
+// Description: A singleton class that reads in the data from an input file and converts it into questions.
+
 package pack;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 public class QuestionPool {
 	private static QuestionPool firstInstance = null;
 	ArrayList<ArrayList<String>> questions = new ArrayList<ArrayList<String>>();

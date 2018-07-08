@@ -24,6 +24,8 @@ public class Connection extends Observable {
 	
 	private boolean aggregate, inherit, associate, bold, dashed;
 	private Color color;
+	
+	private int lineStrokeInt = 1;
 	// constructor
 	public Connection(boolean ag, boolean inh, boolean assoc, boolean isBold, boolean isDashed, Color c)
 	{
@@ -68,24 +70,28 @@ public class Connection extends Observable {
 			// bold / dashed settings
 			if(bold && dashed)
 			{
-				Stroke boldDashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+				lineStrokeInt = 3;
+				Stroke boldDashed = new BasicStroke(lineStrokeInt, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
 				g2d.setStroke(boldDashed);
 			}
 			
 			else if(bold)
 			{
-				g2d.setStroke(new BasicStroke(3));
+				lineStrokeInt = 3;
+				g2d.setStroke(new BasicStroke(lineStrokeInt));
 			}
 			
 			else if(dashed)
 			{
-				Stroke dashed = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+				lineStrokeInt = 1;
+				Stroke dashed = new BasicStroke(lineStrokeInt, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
 				g2d.setStroke(dashed);
 			}
 			
 			else
 			{
-				g2d.setStroke(new BasicStroke(1));
+				lineStrokeInt = 1;
+				g2d.setStroke(new BasicStroke(lineStrokeInt));
 			}
 			
 			g2d.drawLine(point1.x, point1.y, point2.x, point2.y);
@@ -93,6 +99,7 @@ public class Connection extends Observable {
 			// Connection settings
 			if(aggregate)
 			{
+				g2d.setStroke(new BasicStroke(lineStrokeInt));
 				tx.setToIdentity();
 	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
 	            tx.translate(point2.x, point2.y);
@@ -103,6 +110,7 @@ public class Connection extends Observable {
 			
 			else if(inherit)
 			{
+				g2d.setStroke(new BasicStroke(lineStrokeInt));
 				tx.setToIdentity();
 	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
 	            tx.translate(point2.x, point2.y);
@@ -113,6 +121,7 @@ public class Connection extends Observable {
 			
 			else if(associate)
 			{
+				g2d.setStroke(new BasicStroke(lineStrokeInt));
 				tx.setToIdentity();
 	        	double angle = Math.atan2(point2.y-point1.y, point2.x-point1.x);
 	            tx.translate(point2.x, point2.y);
