@@ -5,15 +5,18 @@
 package pack;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class QuestionPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ControlPanel cPanel;
-	public DiagramPanel dPanel;
-	public CodePanel codePanel;
+	private ControlPanel cPanel;
+	private DiagramPanel dPanel;
+	private CodePanel codePanel;
+	
+	public ArrayList<String> questionInfo;
 	
 	// constructor
 	public QuestionPanel()

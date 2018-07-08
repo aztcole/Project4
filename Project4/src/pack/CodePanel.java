@@ -15,14 +15,15 @@ import javax.swing.*;
 public class CodePanel extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
+	
 	JTextArea text;
 	JScrollPane scroll;
+	
 	// constructor
 	public CodePanel()
 	{
 		this.setSize(350, 750);
 		this.setLocation(820, 200);
-		this.setOpaque(false);
 		
 		text = new JTextArea(46,31);
 		text.setEditable(true);

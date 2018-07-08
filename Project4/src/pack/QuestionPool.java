@@ -21,11 +21,10 @@ public class QuestionPool {
 		String getLine;
 		try {
 			while((getLine = reader.readLine()) != null) {
-				if(getLine.contains("qBegin") || getLine == "\n"){continue;} //gets rid of the qBegin
-				else if(getLine.contains("//")) {
-					qProperties = new ArrayList<String>(); //when a // exist, this is the start of a new Question
-					continue;
-					} //skip the question number and begin
+				if(getLine.contains("qBegin") || getLine == "\n"){
+					qProperties = new ArrayList<String>(); // when a qBegin exists, this is the start of a new Question
+					continue;} //gets rid of the qBegin
+				else if(getLine.contains("//")) {continue;} //skip any comment
 				else if(getLine.contains("qEnd") == false) {
 					qProperties.add(getLine); //while between qBegin and qEnd, add the contents to the array
 				}
@@ -39,6 +38,7 @@ public class QuestionPool {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		reader.close();
 	}
 	

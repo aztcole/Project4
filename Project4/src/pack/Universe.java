@@ -1,10 +1,11 @@
 // Class: Universe.java
 // Lead Contributor: Tyler Cole
 // Description: Runs the program, creates the frame, adds panels to the frame.
-//testing
+
 package pack;
 
 import java.awt.Dimension;
+import java.io.IOException;
 import javax.swing.*;
 
 public class Universe extends JFrame {
@@ -13,6 +14,7 @@ public class Universe extends JFrame {
 	
 	private JFrame frameWindow;
 	private JTabbedPane tabbyPane;
+	private QuestionPool qPool;
 	public QuestionPanel[] questArr; // Array to hold the 10 question panels
 	
 	// main method that runs the program
@@ -41,14 +43,40 @@ public class Universe extends JFrame {
 		frameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameWindow.setTitle("Project 4");
 		
-		//frameWindow.add(new DiagramPanel());
+		// try/catch block to get an instance of the question pool
+		try
+		{
+			qPool = QuestionPool.getInstance();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 		
+		// calls set tabs to read the qPool and create tabs accordingly
+		setTabs();
+	}
+	
+	// creates a JTabbed pane and sets it's tabs to the questions read by QPool
+	private void setTabs()
+	{
 		// Creates a tab system to hold the question panels
 		tabbyPane = new JTabbedPane();
+		
+		// adds the tabs to the frame (comes before adding the tabs so that each tab is loaded as it comes instead of after all the others are loaded)
 		frameWindow.add(tabbyPane);
 		
-		//Example tabs (TO BE DELETED)
-		tabbyPane.addTab("Example Tab 1", new QuestionPanel());
-		tabbyPane.addTab("Example Tab 2", new QuestionPanel());
+		// for every question in the question pool, a tab is created
+		for(int i = 0; i < qPool.questions.size(); i++)
+		{
+			// creates a temporary question panel
+			QuestionPanel tempQPanel = new QuestionPanel();
+			
+			// questionInfo is set to the question item at qPool's index
+			tempQPanel.questionInfo = qPool.questions.get(i);
+			
+			// tempQPanel is added to a tab labeled "Question [index]"
+			tabbyPane.addTab("Question " + (i+1), tempQPanel);
+		}
 	}
 }
