@@ -24,7 +24,6 @@ public class Connection extends Observable {
 	
 	private boolean aggregate, inherit, associate, bold, dashed;
 	private Color color;
-	
 	// constructor
 	public Connection(boolean ag, boolean inh, boolean assoc, boolean isBold, boolean isDashed, Color c)
 	{
@@ -35,6 +34,7 @@ public class Connection extends Observable {
 		bold = isBold;
 		dashed = isDashed;
 		color = c;
+		this.addObserver(new CodePanel());
 	}
 	
 	// this method draws the lines between the icons
