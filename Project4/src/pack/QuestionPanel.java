@@ -34,6 +34,7 @@ public class QuestionPanel extends JPanel {
 		dPanel.cPanel = cPanel;
 		add(dPanel);
 		
+		// initalizes the code panel
 		codePanel = new CodePanel();
 		add(codePanel);
 	}
