@@ -16,22 +16,20 @@ public class QuestionPool {
 		String getLine;
 		try {
 			while((getLine = reader.readLine()) != null) {
-				if(getLine.contains("qBegin") || getLine == "\n"){continue;}
-				if(getLine.contains("//")) {
-					qProperties = new ArrayList<String>();
+				if(getLine.contains("qBegin") || getLine == "\n"){continue;} //gets rid of the qBegin
+				else if(getLine.contains("//")) {
+					qProperties = new ArrayList<String>(); //when a // exist, this is the start of a new Question
 					continue;
 					} //skip the question number and begin
-				if(getLine.contains("qEnd") == false) {
-					qProperties.add(getLine);
+				else if(getLine.contains("qEnd") == false) {
+					qProperties.add(getLine); //while between qBegin and qEnd, add the contents to the array
 				}
 				else if(getLine.contains("qEnd")) {
-					questions.add(qProperties);
+					questions.add(qProperties); //at qEnd we need to stop and add our qProperties to questions
 					continue;}
 				
 			}
-			for(int i = 0; i< questions.size(); i++) {
-				System.out.println(questions.get(i) + "\n");
-			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
