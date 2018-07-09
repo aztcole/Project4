@@ -92,8 +92,12 @@ public class IconCircle extends JPanel {
 		MouseAdapter afterListenerRemove = new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				IconCircle thisCircle = (IconCircle) e.getSource(); //will use for arrows. This gives us coordinates of each icon.
-				System.out.println(thisCircle.name + " is located at " + thisCircle.getX() + "," + thisCircle.getY());
 				
+				if(Universe.toggledown) {
+					JPanel panel2 = (JPanel) thisCircle.getParent();
+					panel2.remove(thisCircle);
+					
+				}
 				// if empty connection array list or last item of array list has both items add a new one to the list
 				if(connectArr.size() == 0 || connectArr.get(connectArr.size()-1).iconC2 != null || connectArr.get(connectArr.size()-1).iconS2 != null)
 				{

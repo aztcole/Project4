@@ -11,7 +11,7 @@ import javax.swing.*;
 public class Universe extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	
+	public static boolean toggledown = false;
 	private JFrame frameWindow;
 	private JTabbedPane tabbyPane;
 	private QuestionPool qPool;
@@ -80,5 +80,8 @@ public class Universe extends JFrame {
 			// tempQPanel is added to a tab labeled "Question [index]"
 			tabbyPane.addTab("Question " + (i+1), tempQPanel);
 		}
+	}
+	public static void settoggle(boolean changeState) {
+		toggledown = changeState;
 	}
 }

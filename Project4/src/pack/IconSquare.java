@@ -94,7 +94,11 @@ public class IconSquare extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				IconSquare thissquare = (IconSquare) e.getSource(); //will use for arrows. This gives us coordinates of each icon.
 				System.out.println(thissquare.name + " is located at " + thissquare.getX() + "," + thissquare.getY());
-				
+				if(Universe.toggledown) {
+					JPanel panel2 = (JPanel) thissquare.getParent();
+					panel2.remove(thissquare);
+					
+				}
 				// if empty connection array list or last item of array list has both items add a new one to the list
 				if(connectArr.size() == 0 || connectArr.get(connectArr.size()-1).iconC2 != null || connectArr.get(connectArr.size()-1).iconS2 != null)
 				{

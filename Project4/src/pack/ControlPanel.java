@@ -302,5 +302,22 @@ public class ControlPanel extends JPanel{
 		// adds to panels
 		undoPanel.add(undoButton);
 		ButtonsPanel.add(undoPanel, BorderLayout.EAST);
+		
+		JToggleButton deleteIcon = new JToggleButton("Delete");
+		deleteIcon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbstractButton thisToggleButton = (AbstractButton) e.getSource();
+				if(thisToggleButton.getModel().isSelected()) {
+					
+					Universe.settoggle(true);
+				}
+				else {
+					Universe.settoggle(false);
+				}
+				
+				
+			}
+		});
+		ButtonsPanel.add(deleteIcon, BorderLayout.SOUTH);
 	}
 }

@@ -137,14 +137,14 @@ public class Connection extends Observable {
 	public void AddCircle(IconCircle newCircle)
 	{
 		// if no Icon 1, argument becomes icon 1
-		if(iconC1 == null && iconS1 == null)
+		if(iconC1 == null && iconS1 == null && Universe.toggledown == false)
 		{
 			iconC1 = newCircle;
 			point1 = new Point(newCircle.getX() + 50, newCircle.getY() + 50);
 		}
 		
 		// if no Icon 2, argument becomes icon 2
-		else if(iconC2 == null && iconS2 == null)
+		else if(iconC2 == null && iconS2 == null && Universe.toggledown == false)
 		{
 			iconC2 = newCircle;
 			point2 = new Point(newCircle.getX() + 50, newCircle.getY() + 50);
@@ -155,14 +155,14 @@ public class Connection extends Observable {
 	public void AddSquare(IconSquare newSquare)
 	{
 		// if no Icon 1, argument becomes icon 1
-		if(iconC1 == null && iconS1 == null)
+		if(iconC1 == null && iconS1 == null && Universe.toggledown == false)
 		{
 			iconS1 = newSquare;
 			point1 = new Point(newSquare.getX() + 50, newSquare.getY() + 50);
 		}
 		
 		// if no Icon 2, argument becomes icon 2
-		else if(iconC2 == null && iconS2 == null)
+		else if(iconC2 == null && iconS2 == null && Universe.toggledown == false )
 		{
 			iconS2 = newSquare;
 			point2 = new Point(newSquare.getX() + 50, newSquare.getY() + 50);
