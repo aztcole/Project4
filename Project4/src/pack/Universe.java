@@ -42,6 +42,7 @@ public class Universe extends JFrame {
 		frameWindow.setSize(new Dimension(1200, 1200));
 		frameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameWindow.setTitle("Project 4");
+		frameWindow.setLocationRelativeTo(null);
 		
 		// try/catch block to get an instance of the question pool
 		try

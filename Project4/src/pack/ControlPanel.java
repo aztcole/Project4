@@ -283,7 +283,7 @@ public class ControlPanel extends JPanel{
 		
 		JButton undoButton = new JButton("UNDO");
 		
-		// listener for color button added
+		// listener for undo button added
 		undoButton.addActionListener(new ActionListener()
 			{
 				@Override
