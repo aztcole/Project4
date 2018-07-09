@@ -17,6 +17,7 @@ public class ControlPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
+	public DiagramPanel dPanel;
 	public boolean aggregate, inherit, associate, bold, dashed;
 	public Color color;
 	
@@ -45,6 +46,7 @@ public class ControlPanel extends JPanel{
 		this.add(new JLabel(" ")); // formatting new line
 		CreateConnectionPanel();
 		CreateLinePanel();
+		UndoPanel();
 		add(ButtonsPanel);
 	}
 	
@@ -270,4 +272,35 @@ public class ControlPanel extends JPanel{
 		ButtonsPanel.add(linePanel, BorderLayout.CENTER);
 	}
 	
+	
+	// creates an undo button that deletes the last connection
+	private void UndoPanel()
+	{
+		JPanel undoPanel = new JPanel();
+		undoPanel.setBackground(Color.WHITE);
+		undoPanel.setLayout(new BoxLayout(undoPanel, BoxLayout.PAGE_AXIS));
+		undoPanel.add(new JLabel("Undo Last Line"));
+		
+		JButton undoButton = new JButton("UNDO");
+		
+		// listener for color button added
+		undoButton.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					// removes last item of connections list
+					if(dPanel.connecArr != null && dPanel.connecArr.size() > 0)
+					{
+						dPanel.connecArr.remove(dPanel.connecArr.size() - 1);
+						dPanel.repaint();
+					}
+				}
+			}
+		);
+		
+		// adds to panels
+		undoPanel.add(undoButton);
+		ButtonsPanel.add(undoPanel, BorderLayout.EAST);
+	}
 }

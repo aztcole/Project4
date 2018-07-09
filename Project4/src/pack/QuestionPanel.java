@@ -52,11 +52,16 @@ public class QuestionPanel extends JPanel {
 	{
 		// initializes Control panel
 		cPanel = new ControlPanel();
-		this.add(cPanel);
 				
 		// initializes diagram panel
 		dPanel = new DiagramPanel();
+		
+		// connect the panels
+		cPanel.dPanel = dPanel;
 		dPanel.cPanel = cPanel;
+		
+		// add the panels
+		this.add(cPanel);
 		this.add(dPanel);
 	}
 }

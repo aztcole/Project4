@@ -41,7 +41,6 @@ public class CodePanel extends JPanel implements Observer {
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
 		
 		this.add(scroll);
-		
 	}
 
 	@Override
