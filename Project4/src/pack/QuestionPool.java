@@ -16,7 +16,7 @@ public class QuestionPool {
 	
 
 	private QuestionPool() throws IOException {
-		FileReader file = new FileReader("/home/andrew/Project4/Project4/resources/InputFile.txt");
+		FileReader file = new FileReader("resources//InputFile.txt");
 		BufferedReader reader = new BufferedReader(file);
 		String getLine;
 		try {
