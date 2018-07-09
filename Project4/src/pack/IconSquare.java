@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class IconSquare extends JPanel {
@@ -29,6 +30,8 @@ public class IconSquare extends JPanel {
     final int spawny = 50;
     private int x = 500;
     private int y = 50;
+    
+    JLabel showName;
     
     public int getX() {
     	return this.x;
@@ -51,7 +54,7 @@ public class IconSquare extends JPanel {
     
     static boolean repaintedCheck; // checks if already repainted 
    
-	public IconSquare() {
+	public IconSquare(boolean clickable) {
 		
 		// calls constructor of JPanel
 	    super();
@@ -125,9 +128,9 @@ public class IconSquare extends JPanel {
 	   			JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	   			if(contentPane.getComponent(1).getBounds().contains(thisSquare.getBounds())) {
 	   				
-	   			    thisSquare.name = name + (contentPane.getComponentCount() - 3);
+	   			    thisSquare.setName(name + (contentPane.getComponentCount() - 3));
 	   			    
-	   			    IconSquare tempSquare = new IconSquare();
+	   			    IconSquare tempSquare = new IconSquare(true);
 	   			    tempSquare.connectArr = connectArr;
 	   			    tempSquare.parentPane = parentPane;
 	   			    
@@ -153,14 +156,34 @@ public class IconSquare extends JPanel {
 	   	};
 	   	
 		// add the mouse and motion listeners to the panel
-	   	this.addMouseMotionListener(onDrag);
-	   	this.addMouseListener(removeListeners);
+	   	if(clickable)
+	   	{
+	   		this.addMouseMotionListener(onDrag);
+	   		this.addMouseListener(removeListeners);
+	   	}
+	   	
+	   	// name displayed on label
+	   	showName = new JLabel("Class");
+	   	this.add(showName);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+	}
+	
+	// sets the name
+	public void setName(String s)
+	{
+		name = s;
+		showName.setText(name);
+	}
+	
+	// returns name
+	public String getName()
+	{
+		return name;
 	}
 	
 }

@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class IconCircle extends JPanel {
@@ -29,6 +30,8 @@ public class IconCircle extends JPanel {
     final int spawny = 50;
     private int x = 200;
     private int y = 50;
+    
+    JLabel showName;
     
     public int getX() {
     	return this.x;
@@ -51,7 +54,7 @@ public class IconCircle extends JPanel {
     
     static boolean repaintedCheck; // checks if already repainted 
    
-	public IconCircle() {
+	public IconCircle(boolean clickable) {
 		
 		// calls constructor of JPanel
 	    super();
@@ -123,9 +126,9 @@ public class IconCircle extends JPanel {
 	   			IconCircle thisCircle = (IconCircle) e.getSource();
 	   			JPanel contentPane = (JPanel) ((JPanel) e.getSource()).getParent();
 	   			if(contentPane.getComponent(1).getBounds().contains(thisCircle.getBounds())) {
-	   				thisCircle.name = name + (contentPane.getComponentCount() - 3);
+	   				thisCircle.setName(name + (contentPane.getComponentCount() - 3));
 	   				
-	   				IconCircle tempCircle = new IconCircle();
+	   				IconCircle tempCircle = new IconCircle(true);
 	   				tempCircle.connectArr = connectArr;
 	   				tempCircle.parentPane = parentPane;
 	   				
@@ -150,14 +153,34 @@ public class IconCircle extends JPanel {
 	   	};
 	   	
 		// add the mouse and motion listeners to the panel
-	   	this.addMouseMotionListener(onDrag);
-	   	this.addMouseListener(removeListeners);
+	   	if(clickable)
+	   	{
+	   		this.addMouseMotionListener(onDrag);
+	   		this.addMouseListener(removeListeners);
+	   	}
+	   	
+	   	// name displayed on label
+	   	showName = new JLabel("Interface");
+	   	this.add(showName);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+	}
+	
+	// sets the name
+	public void setName(String s)
+	{
+		name = s;
+		showName.setText(name);
+	}
+	
+	// returns name
+	public String getName()
+	{
+		return name;
 	}
 	
 }

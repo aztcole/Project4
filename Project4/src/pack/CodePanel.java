@@ -7,6 +7,7 @@
 
 package pack;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,22 +16,24 @@ import javax.swing.*;
 public class CodePanel extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
+	
 	JTextArea text;
 	JScrollPane scroll;
+	
 	// constructor
-	public CodePanel()
+	public CodePanel(boolean isEditable)
 	{
 		this.setSize(350, 750);
 		this.setLocation(820, 200);
-		this.setOpaque(false);
+		this.setBackground(Color.WHITE);
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		text = new JTextArea(46,31);
 		text.setEditable(true);
 		text.setSize(350, 750);
-		text.setEditable(false);
 		text.setLineWrap(true);
 
-		scroll = new JScrollPane(text); //add a scrollbar to the text 
+		scroll = new JScrollPane(text); //add a scroll bar to the text 
 		scroll.setSize(350, 750);
 		scroll.setSize(new Dimension(200,400));
 		scroll.setWheelScrollingEnabled(true);
@@ -40,7 +43,6 @@ public class CodePanel extends JPanel implements Observer {
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
 		
 		this.add(scroll);
-		
 	}
 
 	@Override
