@@ -24,18 +24,39 @@ public class QuestionPanel extends JPanel {
 		// sets default settings
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
-		
-		// initalizes Control panel
+	}
+	
+	// checks what type of panel this is based on questionInfo
+	public void checkType()
+	{
+		if(questionInfo.get(0).contains("Diagram"))
+		{
+			isDiagramPanel();
+		}
+		else if(questionInfo.get(0).contains("Code"))
+		{
+			isCodePanel();
+		}
+	}
+	
+	// user has to generate the code
+	private void isDiagramPanel()
+	{
+		// initializes the code panel
+		codePanel = new CodePanel();
+		this.add(codePanel);
+	}
+	
+	// user has to make the diagram
+	private void isCodePanel()
+	{
+		// initializes Control panel
 		cPanel = new ControlPanel();
-		add(cPanel);
-		
-		// initalizes diagram panel
+		this.add(cPanel);
+				
+		// initializes diagram panel
 		dPanel = new DiagramPanel();
 		dPanel.cPanel = cPanel;
-		add(dPanel);
-		
-		// initalizes the code panel
-		codePanel = new CodePanel();
-		add(codePanel);
+		this.add(dPanel);
 	}
 }

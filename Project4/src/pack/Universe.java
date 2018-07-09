@@ -74,6 +74,7 @@ public class Universe extends JFrame {
 			
 			// questionInfo is set to the question item at qPool's index
 			tempQPanel.questionInfo = qPool.questions.get(i);
+			tempQPanel.checkType();
 			
 			// tempQPanel is added to a tab labeled "Question [index]"
 			tabbyPane.addTab("Question " + (i+1), tempQPanel);
