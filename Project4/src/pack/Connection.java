@@ -36,7 +36,6 @@ public class Connection extends Observable {
 		bold = isBold;
 		dashed = isDashed;
 		color = c;
-		this.addObserver(new CodePanel());
 	}
 	
 	// this method draws the lines between the icons

@@ -5,6 +5,7 @@
 package pack;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -15,6 +16,7 @@ public class QuestionPanel extends JPanel {
 	private ControlPanel cPanel;
 	private DiagramPanel dPanel;
 	private CodePanel codePanel;
+	private AnswerPanel answerPanel;
 	
 	public ArrayList<String> questionInfo;
 	
@@ -24,6 +26,9 @@ public class QuestionPanel extends JPanel {
 		// sets default settings
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
+		
+		answerPanel = new AnswerPanel();
+		this.add(answerPanel);
 	}
 	
 	// checks what type of panel this is based on questionInfo
@@ -42,8 +47,18 @@ public class QuestionPanel extends JPanel {
 	// user has to generate the code
 	private void isDiagramPanel()
 	{
+		JPanel fakeDiagramPanel = new JPanel();
+		fakeDiagramPanel.setBackground(Color.WHITE);
+		fakeDiagramPanel.setSize(new Dimension(800,600));
+		fakeDiagramPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		fakeDiagramPanel.setLocation(10, 0);
+		
 		// initializes the code panel
-		codePanel = new CodePanel();
+		codePanel = new CodePanel(true);
+		codePanel.setLocation(820, 0);
+		
+		// adds panels
+		this.add(fakeDiagramPanel);
 		this.add(codePanel);
 	}
 	

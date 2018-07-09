@@ -34,7 +34,7 @@ public class DiagramPanel extends JPanel {
 		// Diagram Panel is given default settings
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
-		this.setSize(new Dimension(810, 1000));
+		this.setSize(new Dimension(810, 600));
 		
 		// initializes the draggable circle
 		dragCircle = new IconCircle();
