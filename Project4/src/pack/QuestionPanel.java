@@ -22,6 +22,7 @@ public class QuestionPanel extends JPanel {
 	private CodePanel codePanel;
 	private AnswerPanel answerPanel;
 	private Point spawn = new Point(10, 30);
+	private String codeToText;
 	
 	// Array lists
 	public ArrayList<String> questionInfo;
@@ -101,6 +102,7 @@ public class QuestionPanel extends JPanel {
 		parseIcons(staticDiagramPanel);
 	}
 	
+	
 	// user has to make the diagram
 	private void isCodePanel()
 	{
@@ -117,15 +119,24 @@ public class QuestionPanel extends JPanel {
 		// static texts created to show the user the text
 		JPanel staticTextPanel = new JPanel();
 		JTextArea staticTextArea = new JTextArea();
+		
+		// text panel defaults
 		staticTextPanel.setLayout(null);
 		staticTextPanel.setSize(350, 480);
 		staticTextPanel.setLocation(820, 210);
 		staticTextPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		staticTextPanel.add(staticTextArea);
 		
-		staticTextArea.setEditable(true);
+		// text area defaults
+		staticTextArea.setEditable(false);
 		staticTextArea.setSize(348, 478);
 		staticTextArea.setLocation(1,1);
+		
+		// parses code into a string (codeToText)
+		ParseCode();
+		
+		// puts parsed code into the text area
+		staticTextArea.setText(codeToText);
 		
 		// add the panels
 		this.add(staticTextPanel);
@@ -287,5 +298,75 @@ public class QuestionPanel extends JPanel {
 		panel.repaint();
 	}
 	
-	
+	private void ParseCode()
+	{
+		codeToText = "RECREATE THIS CODE WITH THE PROVIDED DIAGRAM\n\n";
+		
+		ArrayList<CodeToString> codeArr = new ArrayList<CodeToString>();
+		
+		// parse the string
+		String delims = "[ ]";
+		String[] parsedStringClasses = questionInfo.get(1).split(delims);
+		
+		// passes parsed data into CodeToString objects
+		for(int w = 0; w < parsedStringClasses.length; w++)
+		{
+			if(parsedStringClasses[w].equals("i"))
+			{
+				// temporary interface codetostring created and added to array
+				CodeToString tempCode = new CodeToString("interface", parsedStringClasses[w + 1]);
+				codeArr.add(tempCode);
+			}
+			
+			else if(parsedStringClasses[w].equals("c"))
+			{
+				// temporary class codetostring created and added to array
+				CodeToString tempCode = new CodeToString("class", parsedStringClasses[w + 1]);
+				codeArr.add(tempCode);
+			}
+		}
+		
+		// passes connection data into code array
+		for(int u = 2; u < questionInfo.size(); u++)
+		{
+			String delimer = "[ ]";
+			String[] parsedStringConnec = questionInfo.get(u).split(delimer);
+			CodeToString temp1 = new CodeToString("placeholder1", "placeholder2");
+			CodeToString temp2 = new CodeToString("placeholder1", "placeholder2");
+			
+			for(int h = 0; h < codeArr.size(); h++)
+			{
+				if(codeArr.get(h).getName().equals(parsedStringConnec[0]))
+				{
+					temp1 = codeArr.get(h);
+				}
+				
+				if(codeArr.get(h).getName().equals(parsedStringConnec[2]))
+				{
+					temp2 = codeArr.get(h);
+				}
+			}
+			
+			// sets the connections
+			if(parsedStringConnec[1].equals("g"))
+			{
+				temp1.setAggregate(temp2);
+			}
+			
+			if(parsedStringConnec[1].equals("s"))
+			{
+				temp1.setAssociate(temp2);
+			}
+			
+			if(parsedStringConnec[1].equals("i"))
+			{
+				temp1.setInherit(temp2);
+			}
+		}
+		
+		for(int o = 0; o < codeArr.size(); o++)
+		{
+			codeToText = codeToText + codeArr.get(o).ToString() + "\n";
+		}
+	}
 }
