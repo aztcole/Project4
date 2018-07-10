@@ -47,6 +47,33 @@ public class CodePanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		JPanel item = (JPanel) arg1;
 		
+		QuestionPanel thisQPanel = (QuestionPanel) item.getParent().getParent();
+		AnswerPanel thisAPanel = (AnswerPanel) thisQPanel.getComponent(0);
+		if(thisQPanel.getDiagram()){
+			System.out.println(thisQPanel.getConnectionCount() - 2);
+			System.out.println(thisQPanel.getCount());
+
+			if(item.getClass().getSimpleName().contains("IconSquare")) { 
+				if(thisQPanel.getCount() <= thisQPanel.getCount()) {
+					thisQPanel.iterateCount();
+					}
+				 if (thisQPanel.getCount() == thisQPanel.getConnectionCount() - 2) {
+					thisAPanel.setState(true);
+					}
+			}
+			else if(item.getClass().getSimpleName().contains("IconCircle")) { 
+				if(thisQPanel.getCount() <= thisQPanel.getCount()) {
+					thisQPanel.iterateCount();
+					}
+				 if (thisQPanel.getCount() == thisQPanel.getConnectionCount() - 2) {
+					thisAPanel.setState(true);
+					}
+				}
+				
+			}
+		
+		else {thisAPanel.setState(false);}
 	}
 }

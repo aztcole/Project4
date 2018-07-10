@@ -16,16 +16,17 @@ import javax.swing.*;
 public class QuestionPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	
+	private int cCount = 0;
 	private ControlPanel cPanel;
 	private DiagramPanel dPanel;
 	private CodePanel codePanel;
 	private AnswerPanel answerPanel;
 	private Point spawn = new Point(10, 30);
 	private String codeToText;
-	
+	private boolean isDiagram;
 	// Array lists
 	public ArrayList<String> questionInfo;
+
 	private ArrayList<Connection> connecArr = new ArrayList<Connection>();
 	
 	// constructor
@@ -46,10 +47,12 @@ public class QuestionPanel extends JPanel {
 	{
 		if(questionInfo.get(0).contains("Diagram"))
 		{
+			setDiagram(false);
 			isDiagramPanel();
 		}
 		else if(questionInfo.get(0).contains("Code"))
 		{
+			setDiagram(true);
 			isCodePanel();
 		}
 	}
@@ -368,5 +371,27 @@ public class QuestionPanel extends JPanel {
 		{
 			codeToText = codeToText + codeArr.get(o).ToString() + "\n";
 		}
+	}
+
+
+	public boolean getDiagram() {
+		return isDiagram;
+	}
+
+
+	public void setDiagram(boolean isDiagram) {
+		this.isDiagram = isDiagram;
+	}
+	
+	public void iterateCount() {
+		cCount++;
+	}
+	
+	public int getCount() {
+		return cCount;
+	}
+	
+	public int getConnectionCount() {
+		return questionInfo.size();
 	}
 }

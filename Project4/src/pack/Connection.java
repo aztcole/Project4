@@ -36,6 +36,7 @@ public class Connection extends Observable {
 		bold = isBold;
 		dashed = isDashed;
 		color = c;
+		addObserver(new CodePanel(false));
 	}
 	
 	// this method draws the lines between the icons
@@ -141,6 +142,8 @@ public class Connection extends Observable {
 		{
 			iconC1 = newCircle;
 			point1 = new Point(newCircle.getX() + 50, newCircle.getY() + 50);
+
+			
 		}
 		
 		// if no Icon 2, argument becomes icon 2
@@ -148,6 +151,8 @@ public class Connection extends Observable {
 		{
 			iconC2 = newCircle;
 			point2 = new Point(newCircle.getX() + 50, newCircle.getY() + 50);
+			setChanged();
+			notifyObservers(iconC2);
 		}
 	}
 	
@@ -159,6 +164,7 @@ public class Connection extends Observable {
 		{
 			iconS1 = newSquare;
 			point1 = new Point(newSquare.getX() + 50, newSquare.getY() + 50);
+
 		}
 		
 		// if no Icon 2, argument becomes icon 2
@@ -166,6 +172,8 @@ public class Connection extends Observable {
 		{
 			iconS2 = newSquare;
 			point2 = new Point(newSquare.getX() + 50, newSquare.getY() + 50);
+			setChanged();
+			notifyObservers(iconS2);
 		}
 	}
 }

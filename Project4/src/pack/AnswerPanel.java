@@ -33,9 +33,17 @@ public class AnswerPanel extends JPanel{
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		// set default image to frown
-		IncorrectAnswer();
+		setState(false);
 	}
 	
+	public void setState(boolean state) {
+		if(state) {
+			CorrectAnswer();
+		}
+		else if(state == false) {
+			IncorrectAnswer();
+		}
+	}
 	// changes image to smiley face
 	public void CorrectAnswer()
 	{
