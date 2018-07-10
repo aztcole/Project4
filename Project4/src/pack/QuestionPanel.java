@@ -17,8 +17,8 @@ public class QuestionPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private int cCount = 0;
-	private ControlPanel cPanel;
-	private DiagramPanel dPanel;
+	public ControlPanel cPanel;
+	public DiagramPanel dPanel;
 	private CodePanel codePanel;
 	private AnswerPanel answerPanel;
 	private Point spawn = new Point(10, 30);
@@ -216,6 +216,7 @@ public class QuestionPanel extends JPanel {
 				//increment spawn
 				spawn.x = spawn.x+400;
 			}
+			cCount++;
 		}
 		
 		// creating connections

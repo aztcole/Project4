@@ -7,8 +7,11 @@
 
 package pack;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
@@ -17,12 +20,32 @@ public class CodePanel extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	
-	JTextArea text;
+	private JTextArea text;
 	JScrollPane scroll;
 	
 	// constructor
 	public CodePanel(boolean isEditable)
 	{
+		JButton submit = new JButton("Submit");
+		JPanel tPanel = new JPanel();
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JButton thisButton = (JButton) arg0.getSource();
+				CodePanel thisCodePanel = (CodePanel) thisButton.getParent().getParent();
+				QuestionPanel thisQPanel = (QuestionPanel) thisCodePanel.getParent();
+				AnswerPanel thisAPanel = (AnswerPanel) thisQPanel.getComponent(0);
+
+				if(thisCodePanel.text.getLineCount() == thisQPanel.getCount()) {
+					thisAPanel.setState(true);
+				}
+				
+			};
+		});
+		
+		tPanel.setLayout(new BorderLayout());
 		this.setSize(350, 750);
 		this.setLocation(820, 200);
 		this.setBackground(Color.WHITE);
@@ -34,15 +57,16 @@ public class CodePanel extends JPanel implements Observer {
 		text.setLineWrap(true);
 
 		scroll = new JScrollPane(text); //add a scroll bar to the text 
-		scroll.setSize(350, 750);
+		scroll.setSize(350, 700);
 		scroll.setSize(new Dimension(200,400));
 		scroll.setWheelScrollingEnabled(true);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll.setVisible(true);
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
-		
-		this.add(scroll);
+		tPanel.add(scroll, BorderLayout.CENTER);
+		tPanel.add(submit,BorderLayout.NORTH);
+		this.add(tPanel);
 	}
 
 	@Override
